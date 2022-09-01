@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.moviesService.getUpcomingMovies().subscribe((response: any) => {
       this.movies = response.results;
-      console.log(this.movies);
     });
   }
 }

@@ -9,8 +9,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { TvshowsComponent } from './pages/tvshows/tvshows.component';
 import { GenresComponent } from './pages/genres/genres.component';
-
 import { HttpClientModule } from '@angular/common/http';
+import { SliderComponent } from './components/slider/slider.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     MoviesComponent,
     TvshowsComponent,
-    GenresComponent
+    GenresComponent,
+    SliderComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
