@@ -18,4 +18,10 @@ export class MoviesService {
       .get<MovieDto>(this.baseUrl + category + '?api_key=' + this.apiKey)
       .pipe(switchMap((response) => of(response.results.slice(0, count))));
   }
+
+  searchMovies(page: number) {
+    return this.http
+      .get<MovieDto>(this.baseUrl + 'top_rated' + '?page=' + page + '&api_key=' + this.apiKey)
+      .pipe(switchMap((response) => of(response.results)));
+  }
 }
