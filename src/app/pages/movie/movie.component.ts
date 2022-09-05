@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs';
 import { IMAGE_SIZES } from 'src/app/constants/images-sizes';
 import { Movie, MovieCredits, MovieImages, MovieVideo } from 'src/app/models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -14,22 +13,23 @@ export class MovieComponent implements OnInit {
   movie: Movie | null = null;
   movieVideos: MovieVideo[] = [];
   movieImages: MovieImages | null = null;
-  movieCredits: MovieCredits | null = null;
   imagesSizes = IMAGE_SIZES;
+  movieCredits: MovieCredits | null = null;
+  similarMovies: Movie[] = [];
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.getMovie();
+    this.getMovieData();
   }
 
-  getMovie() {
-    // Since not HttpClient, need to use pipe(first()) to make sure the subscription does not run forever (only once) even if ngOnDestroy is used.
-    this.route.params.pipe(first()).subscribe(({ id }) => {
+  getMovieData() {
+    this.route.params.subscribe(({ id }) => {
       this.getMovieFromId(id);
       this.getMovieVideos(id);
       this.getMovieImages(id);
       this.getMovieCredits(id);
+      this.getSimilarMovies(id);
     });
   }
 
@@ -47,5 +47,9 @@ export class MovieComponent implements OnInit {
 
   getMovieCredits(id: string) {
     this.moviesService.getMovieCredits(id).subscribe((response) => (this.movieCredits = response));
+  }
+
+  getSimilarMovies(id: string) {
+    this.moviesService.getSimilarMovies(id, 6).subscribe((response) => (this.similarMovies = response));
   }
 }

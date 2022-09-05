@@ -42,4 +42,10 @@ export class MoviesService {
   getMovieCredits(id: string) {
     return this.http.get<MovieCredits>(this.baseUrl + id + '/credits' + '?' + this.authorizationUrl);
   }
+
+  getSimilarMovies(id: string, count: number) {
+    return this.http
+      .get<MovieDto>(this.baseUrl + id + '/similar' + '?' + this.authorizationUrl)
+      .pipe(switchMap((response) => of(response.results.slice(0, count))));
+  }
 }
