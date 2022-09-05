@@ -32,9 +32,11 @@ export class MoviesService {
       .pipe(switchMap((response) => of(response.results)));
   }
 
-  getMoviesPage(page: number) {
+  searchMoviesPage(page: number, searchValue?: string) {
+    const uri = searchValue ? 'search/movie' : 'movie/top_rated';
+
     return this.http
-      .get<MovieDto>(this.baseUrl + 'movie/top_rated?page=' + page + '&' + this.authorizationUrl)
+      .get<MovieDto>(this.baseUrl + uri + '?page=' + page + '&query=' + searchValue + '&' + this.authorizationUrl)
       .pipe(switchMap((response) => of(response.results)));
   }
 
