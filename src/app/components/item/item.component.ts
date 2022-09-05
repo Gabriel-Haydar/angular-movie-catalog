@@ -10,8 +10,29 @@ import { IMAGE_SIZES } from '../../constants/images-sizes';
 export class ItemComponent implements OnInit {
   @Input() itemData: Movie | null = null;
   readonly imageSizes = IMAGE_SIZES;
+  poster: string = '';
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getMoviePoster();
+    this.getRoundRating();
+  }
+
+  getMoviePoster() {
+    if (this.itemData) {
+      this.poster = this.imageSizes.small + this.itemData.poster_path;
+    }
+  }
+
+  getRoundRating() {
+    if (this.itemData) {
+      const roundRating = Math.round(this.itemData.vote_average * 10) / 10;
+      this.itemData.vote_average = roundRating;
+    }
+  }
+
+  setDefaultPoster(): void {
+    this.poster = '../../../assets/images/unavailable_poster.png';
+  }
 }

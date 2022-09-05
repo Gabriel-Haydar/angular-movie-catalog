@@ -34,7 +34,10 @@ export class MovieComponent implements OnInit {
   }
 
   getMovieFromId(id: string) {
-    this.moviesService.getMovieDetails(id).subscribe((response) => (this.movie = response));
+    this.moviesService.getMovieDetails(id).subscribe((response) => {
+      this.movie = response;
+      this.getRoundRating();
+    });
   }
 
   getMovieVideos(id: string) {
@@ -47,6 +50,13 @@ export class MovieComponent implements OnInit {
 
   getMovieCredits(id: string) {
     this.moviesService.getMovieCredits(id).subscribe((response) => (this.movieCredits = response));
+  }
+
+  getRoundRating() {
+    if (this.movie) {
+      const roundRating = Math.round(this.movie.vote_average * 10) / 10;
+      this.movie.vote_average = roundRating;
+    }
   }
 
   getSimilarMovies(id: string) {

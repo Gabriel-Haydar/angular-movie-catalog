@@ -6,7 +6,7 @@
       >/10
     </div>
     <div class="movie-item-image">
-      <img [src]="imageSizes.small + itemData.poster_path" [alt]="'Poster of ' + itemData.title" />
+      <img [src]="poster" (error)="setDefaultPoster()" [alt]="'Poster of ' + itemData.title" />
     </div>
     <div class="movie-item-title">{{ itemData.title }}</div>
   </a>
