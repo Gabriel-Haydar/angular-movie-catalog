@@ -18,10 +18,10 @@ export class TvShowComponent implements OnInit {
   imagesSizes = IMAGE_SIZES;
   tvShowCredits: TvShowCredits | null = null;
   similarTvShows: Item[] = [];
-  responsiveOptions = [
+  carouselResponsiveOptions = [
     {
       breakpoint: '600px',
-      numVisible: 3,
+      numVisible: 2,
       numScroll: 1
     }
   ];

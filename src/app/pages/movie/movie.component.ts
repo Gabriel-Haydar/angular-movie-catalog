@@ -16,10 +16,10 @@ export class MovieComponent implements OnInit {
   imagesSizes = IMAGE_SIZES;
   movieCredits: MovieCredits | null = null;
   similarMovies: Movie[] = [];
-  responsiveOptions = [
+  carouselResponsiveOptions = [
     {
       breakpoint: '600px',
-      numVisible: 3,
+      numVisible: 2,
       numScroll: 1
     }
   ];
