@@ -9,7 +9,7 @@ import { GenreDto } from '../models/genre';
   providedIn: 'root'
 })
 export class MoviesService {
-  baseUrl: string = environment.apiMovieBaseUrl;
+  baseUrl: string = environment.apiBaseUrl;
   authorizationUrl: string = 'api_key=' + environment.apiKey;
 
   constructor(private http: HttpClient) {}
@@ -33,11 +33,11 @@ export class MoviesService {
   }
 
   searchMoviesPage(page: number, searchValue?: string) {
-    const uri = searchValue ? 'search/movie' : 'movie/top_rated';
+    const uri = searchValue ? 'search/movie' : 'movie/popular';
 
-    return this.http
-      .get<MovieDto>(this.baseUrl + uri + '?page=' + page + '&query=' + searchValue + '&' + this.authorizationUrl)
-      .pipe(switchMap((response) => of(response.results)));
+    return this.http.get<MovieDto>(
+      this.baseUrl + uri + '?page=' + page + '&query=' + searchValue + '&' + this.authorizationUrl
+    );
   }
 
   getMoviesPageByGenre(genreId: string, page: number) {

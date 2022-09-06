@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie } from 'src/app/models/movie';
+import { Movie, MovieDto } from 'src/app/models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
+  movieDto: MovieDto | null = null;
   genreId: string | null = null;
   searchValue: string = '';
 
@@ -29,7 +30,11 @@ export class MoviesComponent implements OnInit {
 
   getMoviesPage(page: number, searchValue?: string) {
     this.moviesService.searchMoviesPage(page, searchValue).subscribe((response) => {
-      this.movies = response;
+      this.movieDto = response;
+      if (this.movieDto.total_results > 10000) {
+        this.movieDto.total_results = 10000;
+      }
+      this.movies = response.results;
     });
   }
 

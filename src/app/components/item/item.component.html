@@ -1,13 +1,13 @@
 <ng-container *ngIf="itemData">
-  <a class="movie-item" [routerLink]="'/movie/' + itemData.id">
-    <div class="movie-item-rating">
+  <a class="item" [routerLink]="typeUri + itemData.id">
+    <div class="item-rating">
       <i class="icon">star</i>
       <span>{{ itemData.vote_average }}</span
       >/10
     </div>
-    <div class="movie-item-image">
+    <div class="item-image">
       <img [src]="poster" (error)="setDefaultPoster()" [alt]="'Poster of ' + itemData.title" />
     </div>
-    <div class="movie-item-title">{{ itemData.title }}</div>
+    <div class="item-title">{{ itemData.title }}</div>
   </a>
 </ng-container>

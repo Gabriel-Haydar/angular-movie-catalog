@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { IMAGE_SIZES } from 'src/app/constants/images-sizes';
-import { Movie } from '../../models/movie';
+import { IMAGE_SIZES } from '../../constants/images-sizes';
+import { Item } from '../../models/item';
 
 @Component({
   selector: 'app-slider',
@@ -10,7 +10,7 @@ import { Movie } from '../../models/movie';
   animations: [trigger('slideFade', [state('void', style({ opacity: 0 })), transition('void <=> *', [animate('1s')])])]
 })
 export class SliderComponent implements OnInit, OnDestroy {
-  @Input() items: Movie[] = [];
+  @Input() items: Item[] = [];
   @Input() isBanner: boolean = false;
   slideInterval: any;
   readonly imageSizes = IMAGE_SIZES;

@@ -1,6 +1,7 @@
 @import "../../../styles/colors";
 
 .slider {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -50,7 +51,7 @@
       left: 5rem;
 
       .name {
-        font-size: 2.8rem;
+        font-size: 2.4rem;
       }
 
       .meta {
@@ -58,7 +59,8 @@
         color: $lightGrey;
 
         .info {
-          display: flex;
+          display: inline;
+          white-space: nowrap;
           > span {
             &:not(:last-child):after {
               content: "|";
@@ -67,7 +69,7 @@
             }
           }
           .rating {
-            display: flex;
+            display: inline;
             align-items: center;
 
             .icon {
@@ -83,7 +85,43 @@
 
       .desc {
         font-size: 1.2rem;
-        line-height: 1.6;
+        line-height: 1.8rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .slider {
+    .slide {
+      &-pane {
+        position: absolute;
+        width: 70%;
+        top: 4rem;
+        left: 4rem;
+
+        .name {
+          font-size: 1.6rem;
+        }
+
+        .meta {
+          font-size: 1.2rem;
+          color: $lightGrey;
+
+          .info {
+            white-space: nowrap;
+            > span {
+              &:nth-child(2) {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .desc {
+          font-size: 1.2rem;
+          line-height: 1.2;
+        }
       }
     }
   }

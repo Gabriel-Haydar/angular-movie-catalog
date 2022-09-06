@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TvShowsService } from 'src/app/services/tv-shows.service';
 import { Genre } from '../../models/genre';
 import { MoviesService } from '../../services/movies.service';
 
@@ -8,15 +9,20 @@ import { MoviesService } from '../../services/movies.service';
   styleUrls: ['./genres.component.scss']
 })
 export class GenresComponent implements OnInit {
-  genres: Genre[] = [];
+  movieGenres: Genre[] = [];
+  tvShowGenres: Genre[] = [];
 
-  constructor(private moviesService: MoviesService) {}
+  constructor(private moviesService: MoviesService, private tvShowsService: TvShowsService) {}
 
   ngOnInit(): void {
-    this.getGenres();
+    this.getMovieGenres();
+    this.getTvShowGenres();
   }
 
-  getGenres() {
-    this.moviesService.getMoviesGenres().subscribe((response) => (this.genres = response));
+  getMovieGenres() {
+    this.moviesService.getMoviesGenres().subscribe((response) => (this.movieGenres = response));
+  }
+  getTvShowGenres() {
+    this.tvShowsService.getTvShowsGenres().subscribe((response) => (this.tvShowGenres = response));
   }
 }
