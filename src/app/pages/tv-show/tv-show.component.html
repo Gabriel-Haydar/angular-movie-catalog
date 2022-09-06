@@ -70,7 +70,12 @@
     </p-tabPanel>
   </p-tabView>
 
-  <p-carousel *ngIf="tvShowCredits" [numVisible]="5" [value]="tvShowCredits.cast">
+  <p-carousel
+    *ngIf="tvShowCredits"
+    [numVisible]="5"
+    [value]="tvShowCredits.cast"
+    [responsiveOptions]="responsiveOptions"
+  >
     <ng-template let-actor pTemplate="item">
       <div class="actor">
         <img *ngIf="actor.profile_path" [src]="imagesSizes.small + actor.profile_path" [alt]="actor.name" />
@@ -79,5 +84,5 @@
     </ng-template>
   </p-carousel>
 
-  <app-items-banner [items]="similarTvShows" [title]="'Similar Tv Shows'"></app-items-banner>
+  <app-items-banner [items]="similarTvShows" [title]="'Similar Tv Shows'" [typeUri]="'/tv/'"></app-items-banner>
 </ng-container>

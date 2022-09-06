@@ -18,6 +18,13 @@ export class TvShowComponent implements OnInit {
   imagesSizes = IMAGE_SIZES;
   tvShowCredits: TvShowCredits | null = null;
   similarTvShows: Item[] = [];
+  responsiveOptions = [
+    {
+      breakpoint: '600px',
+      numVisible: 3,
+      numScroll: 1
+    }
+  ];
 
   constructor(private route: ActivatedRoute, private tvShowsService: TvShowsService) {}
 

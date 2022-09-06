@@ -16,6 +16,13 @@ export class MovieComponent implements OnInit {
   imagesSizes = IMAGE_SIZES;
   movieCredits: MovieCredits | null = null;
   similarMovies: Movie[] = [];
+  responsiveOptions = [
+    {
+      breakpoint: '600px',
+      numVisible: 3,
+      numScroll: 1
+    }
+  ];
 
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
 
