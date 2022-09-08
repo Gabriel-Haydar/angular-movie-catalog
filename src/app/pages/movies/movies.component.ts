@@ -40,7 +40,11 @@ export class MoviesComponent implements OnInit {
 
   getMoviesPageByGenre(genreId: string, page: number) {
     this.moviesService.getMoviesPageByGenre(genreId, page).subscribe((response) => {
-      this.movies = response;
+      this.movieDto = response;
+      if (this.movieDto.total_results > 10000) {
+        this.movieDto.total_results = 10000;
+      }
+      this.movies = response.results;
     });
   }
 

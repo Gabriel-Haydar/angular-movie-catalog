@@ -33,6 +33,10 @@ const routes: Routes = [
     component: TvShowComponent
   },
   {
+    path: 'tv/genres/:genreId',
+    component: TvShowsComponent
+  },
+  {
     path: 'genres',
     component: GenresComponent
   },

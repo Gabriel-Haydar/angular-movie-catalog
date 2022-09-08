@@ -41,11 +41,9 @@ export class TvShowsService {
   }
 
   getTvShowsPageByGenre(genreId: string, page: number) {
-    return this.http
-      .get<TvShowDto>(
-        this.baseUrl + 'discover/tv?page=' + page + '&with_genres=' + genreId + '&' + this.authorizationUrl
-      )
-      .pipe(switchMap((response) => of(response.results)));
+    return this.http.get<TvShowDto>(
+      this.baseUrl + 'discover/tv?page=' + page + '&with_genres=' + genreId + '&' + this.authorizationUrl
+    );
   }
 
   getTvShowDetails(id: string) {

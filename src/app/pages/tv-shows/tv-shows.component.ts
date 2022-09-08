@@ -38,7 +38,8 @@ export class TvShowsComponent implements OnInit {
 
   getTvShowsPageByGenre(genreId: string, page: number) {
     this.tvShowsService.getTvShowsPageByGenre(genreId, page).subscribe((response) => {
-      this.tvShows = response.map((tvShow) => MapTvShow2Item(tvShow));
+      this.tvShowDto = response;
+      this.tvShows = response.results.map((tvShow) => MapTvShow2Item(tvShow));
     });
   }
 

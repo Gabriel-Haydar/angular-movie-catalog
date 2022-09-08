@@ -41,11 +41,9 @@ export class MoviesService {
   }
 
   getMoviesPageByGenre(genreId: string, page: number) {
-    return this.http
-      .get<MovieDto>(
-        this.baseUrl + 'discover/movie?page=' + page + '&with_genres=' + genreId + '&' + this.authorizationUrl
-      )
-      .pipe(switchMap((response) => of(response.results)));
+    return this.http.get<MovieDto>(
+      this.baseUrl + 'discover/movie?page=' + page + '&with_genres=' + genreId + '&' + this.authorizationUrl
+    );
   }
 
   getMovieDetails(id: string) {
