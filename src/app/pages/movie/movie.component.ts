@@ -18,7 +18,12 @@ export class MovieComponent implements OnInit {
   similarMovies: Movie[] = [];
   carouselResponsiveOptions = [
     {
-      breakpoint: '600px',
+      breakpoint: '991px',
+      numVisible: 4,
+      numScroll: 2
+    },
+    {
+      breakpoint: '767px',
       numVisible: 2,
       numScroll: 1
     }
